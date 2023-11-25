@@ -3,3 +3,8 @@
 
 # Exclude .class files
 **/*.class
+
+
+# Exclude .db file 
+
+**/*.db
