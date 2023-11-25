@@ -1,0 +1,5 @@
+# Exclude all .so files
+**/*.so
+
+# Exclude .class files
+**/*.class
