@@ -1,4 +1,4 @@
-package ChatApp.Utils;
+package Utils;
 
 abstract class InitDatabase {
 

@@ -1,4 +1,4 @@
-package ChatApp.Models;
+package Models;
 
 public class Discussion {
     

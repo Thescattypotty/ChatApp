@@ -1,4 +1,4 @@
-package ChatApp.Controllers.Form;
+package Controllers.Form;
 
 import java.io.IOException;
 import java.net.URL;

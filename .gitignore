@@ -8,3 +8,5 @@
 # Exclude .db file 
 
 **/*.db
+
+.fake
