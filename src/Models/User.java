@@ -1,10 +1,13 @@
 package Models;
 
+import Utils.Security.PlainPassword;
 
 public class User {
     private int id;
     private String username;
     private String password;
+
+    private PlainPassword plainPassword;
 
     public User(int id, String username, String password) {
         this.id = id;
@@ -28,8 +31,13 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public PlainPassword getPlainPassword() {
+        return plainPassword;
+    }
+
+    public void setPlainPassword(PlainPassword plainPassword) {
+        this.plainPassword = plainPassword;
+        this.password = plainPassword.encryptPassword();
     }
 
 }
