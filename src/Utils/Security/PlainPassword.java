@@ -1,6 +1,6 @@
 package Utils.Security;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class PlainPassword {
     private String plainPassword;
@@ -18,12 +18,11 @@ public class PlainPassword {
     }
 
     public String encryptPassword() {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        return passwordEncoder.encode(plainPassword);
+        return BCrypt.withDefaults().hashToString(12, plainPassword.toCharArray());
     }
 
     public boolean matches(String hashedPassword) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        return passwordEncoder.matches(plainPassword, hashedPassword);
+        BCrypt.Result result = BCrypt.verifyer().verify(plainPassword.toCharArray(), hashedPassword);
+        return result.verified;
     }
 }
