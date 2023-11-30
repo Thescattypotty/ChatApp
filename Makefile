@@ -9,7 +9,7 @@ JAVAFX_MODULES = javafx.base,javafx.controls,javafx.fxml,javafx.graphics
 SOURCES = $(wildcard $(SRC_DIR)/**/*.java)
 CLASSES = $(SOURCES:$(SRC_DIR)/%.java=$(BIN_DIR)/%.class)
 CLIENT_MAIN_CLASS = Client.Client
-
+SERVER_MAIN_CLASS = Server.Server
 
 CLASSPATH = $(LIB_DIR):$(JAVAFX_LIB)
 
@@ -22,10 +22,16 @@ $(BIN_DIR)/%.class: $(SRC_DIR)/%.java
 	$(JAVAC) -cp $(CLASSPATH) --module-path $(LIB_DIR) --add-modules $(JAVAFX_MODULES) -d $(BIN_DIR) $<
 
 server-start: compile
-	$(JAVA) -cp $(CLASSPATH):$(BIN_DIR) --module-path $(LIB_DIR) --add-modules $(JAVAFX_MODULES) Server.Server
+	$(JAVA) -cp $(CLASSPATH):$(BIN_DIR) --module-path $(LIB_DIR) --add-modules $(JAVAFX_MODULES) $(SERVER_MAIN_CLASS)
 
 client-start: compile
 	$(JAVA) -cp $(CLASSPATH):$(BIN_DIR) --module-path $(LIB_DIR) --add-modules $(JAVAFX_MODULES) $(CLIENT_MAIN_CLASS)
+
+stop-client:
+    @pkill -f "$(CLIENT_MAIN_CLASS)"
+
+stop-server:
+    @pkill -f "$(SERVER_MAIN_CLASS)"
 
 clean:
 	rm -rf $(BIN_DIR)
