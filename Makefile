@@ -27,11 +27,6 @@ server-start: compile
 client-start: compile
 	$(JAVA) -cp $(CLASSPATH):$(BIN_DIR) --module-path $(LIB_DIR) --add-modules $(JAVAFX_MODULES) $(CLIENT_MAIN_CLASS)
 
-stop-client:
-    @pkill -f "$(CLIENT_MAIN_CLASS)"
-
-stop-server:
-    @pkill -f "$(SERVER_MAIN_CLASS)"
 
 clean:
 	rm -rf $(BIN_DIR)
