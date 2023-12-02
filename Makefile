@@ -19,7 +19,7 @@ $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
 
 $(BIN_DIR)/%.class: $(SRC_DIR)/%.java
-	$(JAVAC) -cp $(CLASSPATH) --module-path $(LIB_DIR) --add-modules $(JAVAFX_MODULES) -d $(BIN_DIR) $<
+	$(JAVAC) -cp $(CLASSPATH) --module-path $(LIB_DIR) --add-modules $(JAVAFX_MODULES) -d $(BIN_DIR)
 
 server-start: compile
 	$(JAVA) -cp $(CLASSPATH):$(BIN_DIR) --module-path $(LIB_DIR) --add-modules $(JAVAFX_MODULES) $(SERVER_MAIN_CLASS)
