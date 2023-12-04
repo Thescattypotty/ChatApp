@@ -21,22 +21,52 @@ public class UserDb extends ObjectDb {
                     return mapResultSetToObject(resultSet);
                 }
             }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        return null;
+    }
+
+    public Object getObjectByUsername(String username)throws SQLException {
+        String query = "SELECT * FROM USER WHERE username = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, username);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return mapResultSetToObject(resultSet);
+                }
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
         }
         return null;
     }
+
 
     @Override
     public void insertObject(Object obj) throws SQLException {
         if (obj instanceof User) {
             User user = (User) obj;
-            String query = "INSERT INTO USER (ID_user, username, password) VALUES (?, ?, ?)";
+            String query = "INSERT INTO USER (username, password) VALUES (?, ?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                preparedStatement.setInt(1, user.getId());
-                preparedStatement.setString(2, user.getUsername());
-                preparedStatement.setString(3, user.getPassword());
+                preparedStatement.setString(1, user.getUsername());
+                preparedStatement.setString(2, user.getPassword());
                 preparedStatement.executeUpdate();
             }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
         }
+        
     }
 
     @Override
@@ -50,6 +80,10 @@ public class UserDb extends ObjectDb {
                 preparedStatement.setInt(3, user.getId());
                 preparedStatement.executeUpdate();
             }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -60,6 +94,10 @@ public class UserDb extends ObjectDb {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         }
+        catch(Exception e)
+            {
+                e.printStackTrace();
+            }
     }
 
     @Override

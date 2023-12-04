@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Server {
-    private static final int PORT = 3456;
+    private static final int PORT = 9999;
     private Map<String, PrintWriter> connectedClient = new HashMap<>();
 
     private void startServer() {
@@ -28,7 +28,7 @@ public class Server {
     }
 
     public static void main(String[] args) {
-
+        new Server().startServer();
     }
 
 }

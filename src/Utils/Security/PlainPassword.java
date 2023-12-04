@@ -6,7 +6,7 @@ public class PlainPassword {
     private String plainPassword;
 
     public PlainPassword(String plainPassword) {
-        this.plainPassword = plainPassword;
+        this.plainPassword = plainPassword.encryptPassword();
     }
 
     public String getPlainPassword() {
