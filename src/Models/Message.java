@@ -46,5 +46,8 @@ public class Message
         this.sentAt = sentAt;
     }
 
+    public void setMessageId(int int1) {
+    }
+
     
 }

@@ -2,11 +2,12 @@ package Utils.Security;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
+
 public class PlainPassword {
     private String plainPassword;
 
     public PlainPassword(String plainPassword) {
-        this.plainPassword = plainPassword.encryptPassword();
+        this.plainPassword = this.encryptPassword();
     }
 
     public String getPlainPassword() {

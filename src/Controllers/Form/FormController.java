@@ -2,11 +2,10 @@ package Controllers.Form;
 
 import java.awt.event.ActionEvent;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
-
-import javax.security.auth.login.LoginException;
-
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
@@ -14,6 +13,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import Controllers.LoginController;
 import Controllers.RegisterController;
+import Utils.AlertMessage;
+import Utils.Exceptions.RegisterException;
+import Utils.Exceptions.LoginException;
+
 
 public class FormController implements Initializable {
     @FXML
@@ -58,12 +61,14 @@ public class FormController implements Initializable {
     @FXML
     private TextField register_username;
 
+    private AlertMessage alert = new AlertMessage();
+
     @Override
     public void initialize(URL url, ResourceBundle resourcebundle) {
-
+        //to do 
     }
 
-    public void ButtonsManage(ActionEvent event) {
+    public void ButtonsManage(ActionEvent event) throws LoginException {
         if (event.getSource() == LoginButton) {
             try {
                 LoginController loginCont = new LoginController();
@@ -71,13 +76,22 @@ public class FormController implements Initializable {
             } catch (LoginException e) {
                 alert.errorMessage("Login failed: " + e.getMessage());
             }
+            catch(SQLException e)
+            {
+                alert.errorMessage("Login Failed Cuz Sql :" + e.getMessage());
+            }
+            
 
         } else if (event.getSource() == RegisterButton) {
             try {
-                RegisterController = registerCont = new RegisterController();
-                registerCont.register(register_username, register_password, register_comfirmPassword);
+                RegisterController  registerCont = new RegisterController();
+                registerCont.register(register_username.getText(), register_password.getText(), register_comfirmPassword.getText());
             } catch (RegisterException e) {
                 alert.errorMessage("Register failed: " + e.getMessage());
+            }
+            catch(SQLException l)
+            {
+                alert.errorMessage("Register failed: " + l.getMessage());
             }
 
         }
@@ -85,11 +99,11 @@ public class FormController implements Initializable {
     }
     public void switchForm(ActionEvent event) {
         if (event.getSource() == OpenRegister) {
-            LoginForm.setInvisible(false);
-            RegisterForm.setInvisible(true);
+            LoginForm.setVisible(false);
+            RegisterForm.setVisible(true);
         } else if (event.getSource() == OpenLogin) {
-            RegisterForm.setInvisible(false);
-            LoginForm.setInvisible(true);
+            RegisterForm.setVisible(false);
+            LoginForm.setVisible(true);
         }
     }
 

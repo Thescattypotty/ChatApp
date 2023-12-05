@@ -1,6 +1,13 @@
 package Controllers;
 
-import utils.Exception.LoginException;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import Models.User;
+import Utils.AlertMessage;
+import Utils.Database;
+import Utils.DbModels.UserDb;
+import Utils.Exceptions.LoginException;
 
 public class LoginController {
     
@@ -20,15 +27,16 @@ public class LoginController {
         
     }
 
-    public void Login(String username , String password) throws LoginException
+    public void Login(String username , String password) throws LoginException, SQLException
     {
-        if(username.getText().isEmpty() || password.getText().isEmpty())
+        if(username.isEmpty() || password.isEmpty())
         {
             throw new LoginException("Please Fill All blank Fields !");
         }
         else
         {
-            User u = user.getObjectByUsername(username);
+            User u = new User();
+            u = user.getObjectByUsername(username);
             if(u.getPlainPassword().matches(password))
             {
                 //redirect to new page;

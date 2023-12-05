@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import Models.Profile;
+
 public class ProfileDb extends ObjectDb {
 
     public ProfileDb(Connection connection) {

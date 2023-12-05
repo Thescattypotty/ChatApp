@@ -51,4 +51,7 @@ public class Discussion {
         this.lastUpdated = lastUpdated;
     }
 
+    public void setDiscussionId(int int1) {
+    }
+
 }

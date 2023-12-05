@@ -1,11 +1,14 @@
 package Controllers;
 
-import utils.AlertMessage;
+import Utils.AlertMessage;
 import java.sql.Connection;
-import utils.Database;
-import utils.DbModels.UserDb;
+import java.sql.SQLException;
+
+import Utils.Database;
+import Utils.DbModels.UserDb;
 import Models.User;
-import utils.Exception.RegisterException;
+import Utils.Exceptions.RegisterException;
+import Utils.Security.PlainPassword;
 
 public class RegisterController {
 
@@ -23,19 +26,20 @@ public class RegisterController {
 
     }
 
-    public register(String username, String password, String ComfirmedPassword) throws RegisterException
+    public void register(String username, String password, String ComfirmedPassword) throws RegisterException, SQLException
     {
-        if(username.getText().isEmpty() || password.getText().isEmpty() || ComfirmedPassword.getText().isEmpty())
+        if(username.isEmpty() || password.isEmpty() || ComfirmedPassword.isEmpty())
         {
            throw new RegisterException("Please Fill All blank Fields !");
         }
         else
         {
-            if(password.getText() == ComfirmedPassword.getText())
+            if(password.equals(ComfirmedPassword))
             {
                 User u = new User();
-                u.setUsername(username.getText());
-                u.setPlainPassword(new PlainPassword(password.getText()));
+                u.setUsername(username);
+                u.setPlainPassword(new PlainPassword(password));
+                
                 this.user.insertObject(u);
                 alert.successMessage("Register Succesfully !");
                 // redirect vers main window

@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import Models.User;
+
 public class UserDb extends ObjectDb {
 
     public UserDb(Connection connection) {
@@ -33,7 +35,7 @@ public class UserDb extends ObjectDb {
         return null;
     }
 
-    public Object getObjectByUsername(String username)throws SQLException {
+    public User getObjectByUsername(String username)throws SQLException {
         String query = "SELECT * FROM USER WHERE username = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, username);
@@ -101,7 +103,7 @@ public class UserDb extends ObjectDb {
     }
 
     @Override
-    protected Object mapResultSetToObject(ResultSet rs) throws SQLException {
+    protected User mapResultSetToObject(ResultSet rs) throws SQLException {
         int id = rs.getInt("ID_user");
         String username = rs.getString("username");
         String password = rs.getString("password");

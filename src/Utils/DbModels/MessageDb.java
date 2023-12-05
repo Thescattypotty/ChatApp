@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import Models.Message;
+
 public class MessageDb extends ObjectDb {
 
     public MessageDb(Connection connection) {

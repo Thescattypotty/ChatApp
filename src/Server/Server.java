@@ -16,7 +16,7 @@ public class Server {
             System.out.println("Server Started on port " + PORT);
             while (true) {
                 Socket clientSocket = serverSocket.accept();
-                new ClientHandler(clientSocket).start();
+                //new ClientHandler(clientSocket).start();// here i need to get users
             }
         } catch (IOException e) {
             e.printStackTrace();
