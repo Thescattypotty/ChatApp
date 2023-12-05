@@ -3,6 +3,7 @@ package Utils;
 import java.util.Optional;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 
 
@@ -29,7 +30,7 @@ public class AlertMessage {
     }
     public Boolean comfirmationMessage(String Message)
     {
-        alert = new Alert(AlertType.COMFIRMATION);
+        alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("comfirmation Message !");
         alert.setHeaderText(null);
         alert.setContentText(Message);
