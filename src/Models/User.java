@@ -1,34 +1,39 @@
 package Models;
 
-import Utils.Security.PlainPassword;
+import Utils.User.PasswordAuthenticatedUserInterface;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 
-public class User {
+public class User implements PasswordAuthenticatedUserInterface
+{
     private int id;
     private String username;
     private String password;
 
 
-    private PlainPassword plainPassword;
+    private String plainPassword;
 
     public User()
     {
         
     }
-    public User(String username, String password) {
+    //for new instance
+    public User(String username, String plainPassword) {
         this.username = username;
-        this.password = password;
+        this.plainPassword = plainPassword;
+        this.password = this.encryptPassword();
     }
 
-    public User(int id, String username, String password) {
+    //for fetch from database
+    public User(int id, String username, String Plainpassword) {
         this.id = id;
         this.username = username;
-        this.password = password;
     }
 
     public int getId() {
         return id;
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
@@ -40,27 +45,26 @@ public class User {
     public String getPassword() {
         return password;
     }
-
-    public PlainPassword getPlainPassword() {
+    @Override
+    public String getPlainPassword() {
         return plainPassword;
     }
-    
-    public void setPassword(String password) throws Exception
-    {
-        if(password == null || password.isEmpty() || password.isBlank())
-        {
-            throw new Exception("Password should not be empty");
-        }
-        else
-        {
-            this.plainPassword = new PlainPassword(password);
-            this.password = this.plainPassword.getPlainPassword();
-        }
+    @Override
+    public void setPlainPassword(String plainPassword) {
+        this.plainPassword = plainPassword;
     }
 
-    public void setPlainPassword(PlainPassword plainPassword) {
-        this.plainPassword = plainPassword;
-        this.password = plainPassword.getPlainPassword();
+
+    @Override
+    public String encryptPassword() {
+        return BCrypt.withDefaults().hashToString(12, this.plainPassword.toCharArray());
     }
+
+    @Override
+    public boolean matches(String hashedPassword) {
+        BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), hashedPassword);
+        return result.verified;
+    }
+
 
 }

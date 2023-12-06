@@ -2,19 +2,13 @@ package Utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
+import java.sql.SQLException;
+import Repository.*;
 public class Database
 {
     
     private static Connection connection;
-    private PreparedStatement prepare;
-    private ResultSet result;
-
-    private Statement stmt = null;
 
 
     public static Connection Connect()
@@ -43,8 +37,16 @@ public class Database
     public void CreateTables()
     {
         try{
-
-        }catch(Exception e)
+            EntityRepository e1 = new UserRepository();
+            e1.createTable();
+            e1 = new ProfileRepository();
+            e1.createTable();
+            //e1 = new MessageRepository();
+            //e1.createTable();
+            //e1 = new DiscussionRepository();
+            //e1.createTable();
+            
+        }catch(SQLException e)
         {
             System.err.println(e.getClass().getName() + " : " + e.getMessage());
         }
@@ -54,8 +56,18 @@ public class Database
     public void DeleteTables()
     {
         try{
-
-        }catch(Exception e)
+            EntityRepository e1 = new UserRepository();
+            e1.DeleteTable();
+            e1 = new ProfileRepository();
+            e1.DeleteTable();
+            /*
+            e1 = new MessageRepository();
+            e1.DeleteTable();
+            e1 = new DiscussionRepository();
+            e1.DeleteTable();
+            */
+            
+        }catch(SQLException e)
         {
             System.err.println(e.getClass().getName() + " : " + e.getMessage());
         }
