@@ -1,9 +1,10 @@
 package Utils.AbstractController;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import Models.User;
+import Utils.User.PasswordAuthenticatedUserInterface;
 import Utils.User.UserProvider;
 
 import javafx.fxml.Initializable;
@@ -22,9 +23,20 @@ public class AbstractController extends UserProvider implements Initializable
         
     }
 
-    protected User getUser(String username)
+    protected PasswordAuthenticatedUserInterface getUser(String username)
     {
-        return new User();
+
+        PasswordAuthenticatedUserInterface user = null;
+        try{
+            user = this.userRepository.getUser(username);
+            return user;
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return user;
     }
+
     
 }

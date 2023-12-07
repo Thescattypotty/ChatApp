@@ -7,15 +7,15 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import Repository.UserRepository;
 
 public class UserProvider {
-    private UserRepository userRepository;
-    private Map<String, PasswordAuthenticatedUserInterface> authenticatedUsers;
+    protected UserRepository userRepository;
+    protected Map<String, PasswordAuthenticatedUserInterface> authenticatedUsers;
 
     public UserProvider() {
         this.userRepository = new UserRepository();
         this.authenticatedUsers = new HashMap<>();
     }
 
-    public PasswordAuthenticatedUserInterface authenticate(String username, String plainPassword) {
+    protected PasswordAuthenticatedUserInterface authenticate(String username, String plainPassword) {
         try {
             PasswordAuthenticatedUserInterface user = userRepository.getUser(username);
 
@@ -32,11 +32,12 @@ public class UserProvider {
 
     }
 
-    public void logout(String username) {
+    protected void logout(String username) {
         authenticatedUsers.remove(username);
     }
 
-    public Map<String, PasswordAuthenticatedUserInterface> getAuthenticatedUsers() {
+    protected Map<String, PasswordAuthenticatedUserInterface> getAuthenticatedUsers() {
         return new HashMap<>(authenticatedUsers);
+  
     }
 }
