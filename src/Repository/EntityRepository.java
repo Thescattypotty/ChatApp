@@ -12,7 +12,7 @@ public abstract class EntityRepository extends Database implements DatabaseInit
 
     public EntityRepository()
     {
-        connection = Connect();
+        this.connection = Database.Connect();
     }
 
     @Override

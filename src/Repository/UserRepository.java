@@ -25,7 +25,7 @@ public class UserRepository extends EntityRepository
     }
 
     public PasswordAuthenticatedUserInterface getUser(String username) throws SQLException {
-        String selectSQL = "SELECT * FROM users WHERE username = ?";
+        String selectSQL = "SELECT * FROM USER WHERE username = ?";
         PasswordAuthenticatedUserInterface user = null;
 
         try (PreparedStatement statement = connection.prepareStatement(selectSQL)) {

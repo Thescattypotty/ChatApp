@@ -13,15 +13,10 @@ public class Database
 
     public static Connection Connect()
     {
-        if(connection != null)
-        {
-            return connection;
-        }
-        else 
-        {
+
             try{
                 Class.forName("org.sqlite.JDBC");
-                String dbURL = "jbdc:sqlite:Database.db";
+                String dbURL = "jdbc:sqlite:Database.db";
 
                 connection = DriverManager.getConnection(dbURL);
 
@@ -32,7 +27,6 @@ public class Database
                 e.printStackTrace();
                 return null;
             }
-        }
     }
     public void CreateTables()
     {
@@ -82,6 +76,14 @@ public class Database
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void main(String[] args)
+    {
+        Database d = new Database();
+        Database.Connect();
+        d.CreateTables();
+        Database.close();
     }
     
 

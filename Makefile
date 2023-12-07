@@ -1,34 +1,17 @@
-JAVAC = javac
-JAVA = java
 
-SRC_DIR = src
-BIN_DIR = bin
-LIB_DIR = lib/lib
-JAVAFX_MODULES = javafx.base,javafx.controls,javafx.fxml,javafx.graphics
+compile:
+	javac -d bin -cp "lib/*:lib/lib/*:src" $(find src -name "*.java")
 
-SOURCES = $(wildcard $(SRC_DIR)/**/*.java)
-CLASSES = $(SOURCES:$(SRC_DIR)/%.java=$(BIN_DIR)/%.class)
-CLIENT_MAIN_CLASS = Client.Client
-SERVER_MAIN_CLASS = Server.Server
+run:
+	java --module-path "lib/javafx.base.jar:lib/javafx.controls.jar:lib/javafx.fxml.jar:lib/javafx.graphics.jar:lib/javafx.media.jar:lib/javafx.swing.jar:lib/javafx.web.jar:lib/lib" --add-modules javafx.controls,javafx.fxml -cp "bin:lib/*:lib/lib/*" Client.Client	
 
-CLASSPATH = $(LIB_DIR):$(JAVAFX_LIB)
-
-compile: $(BIN_DIR) $(CLASSES)
-
-$(BIN_DIR):
-	mkdir -p $(BIN_DIR)
-
-$(BIN_DIR)/%.class: $(SRC_DIR)/%.java
-	$(JAVAC) -cp $(CLASSPATH) --module-path $(LIB_DIR) --add-modules $(JAVAFX_MODULES) -d $(BIN_DIR)
-
-server-start: compile
-	$(JAVA) -cp $(CLASSPATH):$(BIN_DIR) --module-path $(LIB_DIR) --add-modules $(JAVAFX_MODULES) $(SERVER_MAIN_CLASS)
-
-client-start: compile
-	$(JAVA) -cp $(CLASSPATH):$(BIN_DIR) --module-path $(LIB_DIR) --add-modules $(JAVAFX_MODULES) $(CLIENT_MAIN_CLASS)
-
+init-database:
+	compile : 
+		javac -d bin -cp "lib/*:lib/lib/*:src" src/Utils/Database.java
+	run : 
+		java -cp "bin:lib/*:lib/lib/*:src" Utils.Database
+		java -cp "bin:lib/*:lib/lib/*:src" -Dorg.slf4j.simpleLogger.defaultLogLevel=debug Utils.Database
 
 clean:
-	rm -rf $(BIN_DIR)
+	rm -rf bin/*
 
-.PHONY: compile server-start clean

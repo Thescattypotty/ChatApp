@@ -26,9 +26,9 @@ public class Server {
     public void setConnectedClient(Map<String, PrintWriter> connectedClient) {
         this.connectedClient = connectedClient;
     }
-
+     /* 
     public static void main(String[] args) {
         new Server().startServer();
-    }
+    }*/
 
 }

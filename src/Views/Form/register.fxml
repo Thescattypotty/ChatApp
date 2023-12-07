@@ -65,7 +65,7 @@
                   </ImageView>
                   <PasswordField fx:id="LoginForm_password" layoutX="19.0" layoutY="267.0" prefHeight="27.0" prefWidth="282.0" promptText="Password" styleClass="textfield" />
                   <Button layoutX="135.0" layoutY="294.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="177.0" styleClass="links" text="Forget password?" textFill="#1b84ff" />
-                  <Button fx:id="OpenRegister" layoutX="181.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="85.0" styleClass="links" text="Sign up" textFill="#1b84ff" />
+                  <Button fx:id="OpenRegister" layoutX="181.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchToRegister" prefHeight="26.0" prefWidth="85.0" styleClass="links" text="Sign up" textFill="#1b84ff" />
                   <Button layoutX="153.0" layoutY="524.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="95.0" styleClass="links" text="Contact us" textFill="#1b84ff" />
                   <Button layoutX="239.0" layoutY="524.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0" styleClass="links" text="Terms" textFill="#1b84ff" />
                </children>
@@ -107,7 +107,7 @@
                      </image>
                   </ImageView>
                   <PasswordField fx:id="register_comfirmPassword" layoutX="18.0" layoutY="336.0" prefHeight="27.0" prefWidth="282.0" promptText="Repeat Password" styleClass="textfield" />
-                  <Button fx:id="OpenLogin" layoutX="174.0" layoutY="450.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="85.0" styleClass="links" text="Sign in" textFill="#1b84ff" />
+                  <Button fx:id="OpenLogin" layoutX="174.0" layoutY="450.0" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="26.0" prefWidth="85.0" styleClass="links" text="Sign in" textFill="#1b84ff" />
                   <Button layoutX="181.0" layoutY="524.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" styleClass="links" text="Contact us" textFill="#1b84ff" />
                   <Button layoutX="233.0" layoutY="524.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" styleClass="links" text="Terms" textFill="#1b84ff" />
                   <PasswordField fx:id="register_password" layoutX="18.0" layoutY="263.0" prefHeight="27.0" prefWidth="282.0" promptText="Password" styleClass="textfield" />

@@ -15,14 +15,11 @@ import Utils.AlertMessage;
 import Utils.AbstractController.AbstractController;
 import Utils.Services.UserService;
 import Utils.User.PasswordAuthenticatedUserInterface;
-import Repository.UserRepository;
 
-public class AuthentificationController extends AbstractController
-{
-    private UserRepository userRepository;
+public class AuthentificationController extends AbstractController {
     private UserService userService;
 
-    private AlertMessage alert ;
+    private AlertMessage alert;
 
     @FXML
     private ResourceBundle resources;
@@ -66,86 +63,103 @@ public class AuthentificationController extends AbstractController
     @FXML
     private TextField register_username;
 
-
-    public AuthentificationController
-        (
-            UserService userService
-        )
-    {
+    public AuthentificationController() {
         super();
-        this.userService = userService;
+        this.userService = UserService.getInstance();
+        alert = new AlertMessage();
     }
+
     @FXML
-    private void handleLogin()
-    {
+    private void handleLogin() {
         String username = LoginForm_username.getText();
         String password = LoginForm_password.getText();
 
         PasswordAuthenticatedUserInterface newUser = this.authenticate(username, password);
 
-        if(newUser != null)
-        {
+        if (newUser != null) {
             userService.setUser(newUser);
             alert.successMessage("Login Successfully");
             clearLogin();
-            //redirect to main page!
-        }
-        else
-        {
+            // redirect to main page!
+        } else {
             alert.errorMessage("Login Failed. Check your username or password");
             clearLogin();
         }
     }
 
     @FXML
-    private void handleRegister() throws SQLException
-    {
+    private void handleRegister() throws SQLException {
         String username = register_username.getText();
         String password = register_password.getText();
         String ComfirmedPassword = register_comfirmPassword.getText();
 
-        if(userRepository.getUser(username) != null) 
-        {
+
+
+        if (this.userRepository.getUser(username) != null) {
             alert.errorMessage("Username already exist change it");
             clearRegister();
             return;
         }
-        if(password != ComfirmedPassword)
-        {
+        if (!password.equals(ComfirmedPassword)) {
             alert.errorMessage("Password does not match");
             clearRegister();
             return;
         }
-        
+
         PasswordAuthenticatedUserInterface newUser = new User(username, password);
-        userRepository.addUser(newUser);
+        this.userRepository.addUser(newUser);
         RegisterForm.setVisible(false);
         LoginForm.setVisible(true);
         alert.comfirmationMessage("Registration successful !");
-        
+
     }
 
-
-    public void switchForm(ActionEvent event) {
-        if (event.getSource() == OpenRegister) {
-            LoginForm.setVisible(false);
-            RegisterForm.setVisible(true);
-        } else if (event.getSource() == OpenLogin) {
-            RegisterForm.setVisible(false);
-            LoginForm.setVisible(true);
-        }
-    }
-
-    public void clearRegister()
+    @FXML
+    public void switchToLogin()
     {
+        RegisterForm.setVisible(false);
+        LoginForm.setVisible(true);
+    }
+
+    @FXML 
+    public void switchToRegister()
+    {
+        RegisterForm.setVisible(true);
+        LoginForm.setVisible(false);
+    }
+
+    public void clearRegister() {
         register_username.clear();
         register_password.clear();
         register_comfirmPassword.clear();
     }
-    public void clearLogin()
-    {
+
+    public void clearLogin() {
         LoginForm_password.clear();
         LoginForm_username.clear();
     }
 
+    @FXML
+    void initialize() {
+        assert LoginButton != null : "fx:id=\"LoginButton\" was not injected: check your FXML file 'register.fxml'.";
+        assert LoginForm != null : "fx:id=\"LoginForm\" was not injected: check your FXML file 'register.fxml'.";
+        assert LoginForm_password != null
+                : "fx:id=\"LoginForm_password\" was not injected: check your FXML file 'register.fxml'.";
+        assert LoginForm_username != null
+                : "fx:id=\"LoginForm_username\" was not injected: check your FXML file 'register.fxml'.";
+        assert OpenLogin != null : "fx:id=\"OpenLogin\" was not injected: check your FXML file 'register.fxml'.";
+        assert OpenRegister != null : "fx:id=\"OpenRegister\" was not injected: check your FXML file 'register.fxml'.";
+        assert RegisterButton != null
+                : "fx:id=\"RegisterButton\" was not injected: check your FXML file 'register.fxml'.";
+        assert RegisterForm != null : "fx:id=\"RegisterForm\" was not injected: check your FXML file 'register.fxml'.";
+        assert Register_CheckBox != null
+                : "fx:id=\"Register_CheckBox\" was not injected: check your FXML file 'register.fxml'.";
+        assert register_comfirmPassword != null
+                : "fx:id=\"register_comfirmPassword\" was not injected: check your FXML file 'register.fxml'.";
+        assert register_password != null
+                : "fx:id=\"register_password\" was not injected: check your FXML file 'register.fxml'.";
+        assert register_username != null
+                : "fx:id=\"register_username\" was not injected: check your FXML file 'register.fxml'.";
+
+    }
 }

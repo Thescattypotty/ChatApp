@@ -80,7 +80,7 @@ public class ProfileRepository extends EntityRepository
 
 
     @Override
-    public void DeleteTable() throws SQLException {
+    public void createTable() throws SQLException {
 
         String createTableSQL = "CREATE TABLE PROFILE(ID_Profile INT PRIMARY KEY, ID_user INT NOT NULL, firstname VARCHAR(30) NOT NULL , lastname VARCHAR(30) NOT NULL , age int NOT NULL , FOREIGN KEY(ID_user) REFERENCES USER(ID_user)); INSERT INTO PROFILE(firstname ,lastname ,age, ID_user) VALUES('yahya','bennis',21,0)";
         try (PreparedStatement statement = connection.prepareStatement(createTableSQL)) {
@@ -92,7 +92,7 @@ public class ProfileRepository extends EntityRepository
     }
 
     @Override
-    public void createTable() throws SQLException {
+    public void DeleteTable() throws SQLException {
 
         String DeleteTableSQL = "DROP TABLE IF EXISTS PROFILE ;";
         try(PreparedStatement statement = connection.prepareStatement(DeleteTableSQL))
