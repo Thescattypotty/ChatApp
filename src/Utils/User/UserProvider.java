@@ -10,8 +10,8 @@ public class UserProvider {
     private UserRepository userRepository;
     private Map<String, PasswordAuthenticatedUserInterface> authenticatedUsers;
 
-    public UserProvider(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserProvider() {
+        this.userRepository = new UserRepository();
         this.authenticatedUsers = new HashMap<>();
     }
 

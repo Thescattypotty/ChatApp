@@ -8,13 +8,12 @@ import Utils.User.UserProvider;
 
 import javafx.fxml.Initializable;
 
-public class AbstractController implements Initializable
+public class AbstractController extends UserProvider implements Initializable
 {
-    protected UserProvider userProvider;
 
-    public AbstractController(UserProvider userProvider)
+    public AbstractController()
     {
-        this.userProvider = userProvider;
+        super();
     }
 
     @Override

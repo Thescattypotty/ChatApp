@@ -5,7 +5,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
@@ -13,15 +12,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import Models.User;
 import Utils.AlertMessage;
+import Utils.AbstractController.AbstractController;
 import Utils.Services.UserService;
 import Utils.User.PasswordAuthenticatedUserInterface;
-import Utils.User.UserProvider;
 import Repository.UserRepository;
 
-public class AuthentificationController implements Initializable
+public class AuthentificationController extends AbstractController
 {
     private UserRepository userRepository;
-    private UserProvider userProvider;
     private UserService userService;
 
     private AlertMessage alert ;
@@ -71,19 +69,11 @@ public class AuthentificationController implements Initializable
 
     public AuthentificationController
         (
-            UserRepository userRepository,
-            UserService userService,
-            UserProvider userProvider
+            UserService userService
         )
     {
-        this.userRepository = userRepository;
-        this.userProvider = userProvider;
+        super();
         this.userService = userService;
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourcebundle) {
-        //to do 
     }
     @FXML
     private void handleLogin()
@@ -91,7 +81,7 @@ public class AuthentificationController implements Initializable
         String username = LoginForm_username.getText();
         String password = LoginForm_password.getText();
 
-        PasswordAuthenticatedUserInterface newUser = userProvider.authenticate(username, password);
+        PasswordAuthenticatedUserInterface newUser = this.authenticate(username, password);
 
         if(newUser != null)
         {
