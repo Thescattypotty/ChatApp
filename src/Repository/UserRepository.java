@@ -67,6 +67,21 @@ public class UserRepository extends EntityRepository
             e.printStackTrace();
         }
     }
+    public String getPassword(String username) throws SQLException
+    {
+        String query = "SELECT password FROM USER WHERE username = ?";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+            if(rs.next())
+                return rs.getString("password");
+            else
+                return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     @Override
     public void createTable() throws SQLException
