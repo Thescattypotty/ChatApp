@@ -9,14 +9,13 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import Models.User;
 import Utils.AlertMessage;
 import Utils.AbstractController.AbstractController;
-import Utils.Services.UserService;
 import Utils.User.PasswordAuthenticatedUserInterface;
 
 public class AuthentificationController extends AbstractController {
-    private UserService userService;
 
     private AlertMessage alert;
 
@@ -64,7 +63,6 @@ public class AuthentificationController extends AbstractController {
 
     public AuthentificationController() {
         super();
-        this.userService = UserService.getInstance();
         alert = new AlertMessage();
     }
 
@@ -73,13 +71,11 @@ public class AuthentificationController extends AbstractController {
         String username = LoginForm_username.getText();
         String password = LoginForm_password.getText();
 
-        PasswordAuthenticatedUserInterface newUser = this.authenticate(username, password);
 
-        if (newUser != null) {
-            userService.setUser(newUser);
+        if (this.authenticate(username, password) == true) {
             alert.successMessage("Login Successfully");
             clearLogin();
-            // redirect to main page!
+            this.redirectTo((Stage)LoginButton.getScene().getWindow(), "/home/senshi/Desktop/ChatApp/src/Views/mainappinterface.fxml");
         } else {
             alert.errorMessage("Login Failed. Check your username or password");
             clearLogin();
@@ -91,8 +87,6 @@ public class AuthentificationController extends AbstractController {
         String username = register_username.getText();
         String password = register_password.getText();
         String ComfirmedPassword = register_comfirmPassword.getText();
-
-
 
         if (this.userRepository.getUser(username) != null) {
             alert.errorMessage("Username already exist change it");

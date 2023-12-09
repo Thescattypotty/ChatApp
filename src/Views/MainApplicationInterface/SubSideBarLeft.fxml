@@ -5,10 +5,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="600.0" prefWidth="60.0" style="-fx-background-color: #1E2129;" styleClass="rounded" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Main.SubSideBarController">
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" top="5.0" />
-         </BorderPane.margin>
+<AnchorPane prefHeight="600.0" prefWidth="60.0" style="-fx-background-color: #1E2129;" styleClass="rounded"  xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Main.SubSideBarController">
+
          <children>
             <ImageView fitHeight="24.0" fitWidth="23.0" layoutX="19.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" styleClass="Label">
                <image>

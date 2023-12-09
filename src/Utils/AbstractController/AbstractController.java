@@ -10,58 +10,56 @@ import Utils.User.UserProvider;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class AbstractController extends UserProvider implements Initializable
-{
+public class AbstractController extends UserProvider implements Initializable {
 
-    public AbstractController()
-    {
+    public AbstractController() {
+
         super();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO Auto-generated method stub
-        
+
     }
 
-    protected PasswordAuthenticatedUserInterface getUser(String username)
-    {
+    protected PasswordAuthenticatedUserInterface getUser() {
+        if (this.userService.getUser() != null) {
+            return this.userService.getUser();
+        }
+        return null;
+
+    }
+
+    protected PasswordAuthenticatedUserInterface getUser(String username) {
 
         PasswordAuthenticatedUserInterface user = null;
-        try{
+        try {
             user = this.userRepository.getUser(username);
             return user;
-        }
-        catch(SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return user;
     }
-    /*
 
-    ask gpt about this
-    public void redirectToView(AnchorPane anch , String name)
-    {
-        anch.getChildren().setAll(FXMLLoader.load(new File("/home/senshi/Desktop/ChatApp/src/Views/Form/register.fxml").toURI().toURL()));
-    }*/
-/*
- * 
- * salut j'ai le code suivant :
-@Override
-    public void start(Stage stage) throws Exception {
-        
-        //Parent root = FXMLLoader.load(getClass().getResource("../Views/Form/register.fxml"));
-        Parent root = FXMLLoader.load(new File("/home/senshi/Desktop/ChatApp/src/Views/Form/register.fxml").toURI().toURL());
+    protected void redirectTo(Stage currentStage, String fxmlPath) {
+        try {
+            Parent root = FXMLLoader.load(new File(fxmlPath).toURI().toURL());
+            Stage newStage = new Stage();
+            newStage.setTitle("ChatApp - Welcome");
+            newStage.setScene(new Scene(root, 1024, 600));
 
-        stage.setTitle("ChatApp - Authentification");
-        stage.setScene(new Scene(root, 1024, 600));
-        stage.show();
+            if (currentStage != null) {
+                currentStage.close();
+            }
+            newStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-j'ai un controlleur qui gere le register.fxml , et au moment de l'authentification je voudrai closer ce fxml et afficher un autre appeler mainApplication.fxml
- * 
- */
-    
+
 }
