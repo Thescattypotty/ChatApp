@@ -3,6 +3,8 @@ package Repository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import Models.User;
 import Utils.User.PasswordAuthenticatedUserInterface;
@@ -103,7 +105,28 @@ public class UserRepository extends EntityRepository
         catch(SQLException e)
         {
             e.printStackTrace();
+        }   
+    }
+    public List<PasswordAuthenticatedUserInterface> getAllUsers() throws SQLException {
+        List<PasswordAuthenticatedUserInterface> userList = new ArrayList<>();
+        String selectAllSQL = "SELECT * FROM USER";
+
+        try (PreparedStatement statement = connection.prepareStatement(selectAllSQL)) {
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                PasswordAuthenticatedUserInterface user = new User(
+                        resultSet.getInt("ID_user"),
+                        resultSet.getString("username"),
+                        resultSet.getString("password")
+                );
+                userList.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
+        return userList;
     }
 }
 
