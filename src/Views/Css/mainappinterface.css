@@ -1,0 +1,72 @@
+.mainbackground{
+    -fx-background-color: #0D0E12;
+}
+.rounded {
+    -fx-border-radius: 2.0; /* Set the border radius to 1 */
+    -fx-background-radius: 10.0; /* Set the background radius to 1 */
+}
+.textfield{
+    -fx-background-color: transparent;
+    -fx-text-fill: #fff;
+    -fx-border-color: #99a1b7;
+    -fx-border-radius:2.0;
+}
+.Label:hover{
+    -fx-background-color: #272a33;
+    -fx-background-radius: 5.0;
+}
+.Label:selected{
+    -fx-background-color: #272a33;
+    -fx-background-radius: 5.0;
+}
+.toppart {
+    -fx-border-radius: 2.0; 
+    -fx-background-radius: 10.0;
+    -fx-background-color: #292c38;
+}
+.calls {
+    -fx-border-radius: 2.0; 
+    -fx-background-radius: 10.0;
+    -fx-background-color: rgb(50, 53, 67);
+}
+.calls:hover{
+    -fx-border-radius: 2.0; 
+    -fx-background-radius: 10.0;
+    -fx-background-color: rgb(65, 69, 87);
+}
+.messaebackground{
+    -fx-background-image:url('../Images/BgConversation.jpg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+.roundedMessagereceived {
+    -fx-text-fill: #fff; /* White text color */
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+    -fx-wrap-text: true; /* Allow text to wrap */
+    -fx-max-width: 200px;
+    -fx-background-color: #373737; /* Dark background color */
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-alignment: center-left; /* Adjust alignment as needed */
+    -fx-border-color: #2e2e2e; /* Darker border color */
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+.roundedMessagesent {
+    -fx-text-fill: #fff; /* White text color */
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+    -fx-wrap-text: true; /* Allow text to wrap */
+    -fx-max-width: 200px;
+    -fx-background-color: #373737; /* Dark background color */
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-alignment: center-left; /* Adjust alignment as needed */
+    -fx-border-color: #2e2e2e; /* Darker border color */
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+

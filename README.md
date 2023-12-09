@@ -1,4 +1,5 @@
 JavaFX Chat Application
+
 Welcome to the JavaFX Chat Application! This application provides a comprehensive set of functionalities for chatting, including one-on-one conversations, group chats, calls, video calls, stories, and profile management. You can easily run this application with Java and JavaFX.
 
 
