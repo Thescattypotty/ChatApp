@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1E2129;" styleClass="rounded" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Main.MessagerieController">
+<AnchorPane fx:id="messagerieAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1E2129;" styleClass="rounded" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Main.MessagerieController">
     <children>
         <AnchorPane layoutX="-1.0" prefHeight="80.0" prefWidth="750.0" styleClass="toppart">
             <children>
                 <Circle fill="WHITE" layoutX="39.0" layoutY="41.0" radius="23.0" stroke="BLACK" strokeType="INSIDE" />
-                <Label layoutX="74.0" layoutY="31.0" text="User Name 1" textFill="WHITE">
+                <Label fx:id="receiverusername" layoutX="74.0" layoutY="31.0" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label layoutX="74.0" layoutY="47.0" text="Active 2h ago" textFill="WHITE">
+                    <font>
+                        <Font size="10.0" />
                     </font>
                 </Label>
                 <AnchorPane layoutX="563.0" layoutY="19.0" prefHeight="43.0" prefWidth="108.0" styleClass="calls">
@@ -41,11 +44,6 @@
                         <Image url="@../Images/chercher.png" />
                     </image>
                 </ImageView>
-                <Label layoutX="74.0" layoutY="47.0" text="Active 2h ago" textFill="WHITE">
-                    <font>
-                        <Font size="10.0" />
-                    </font>
-                </Label>
             </children>
         </AnchorPane>
         <AnchorPane layoutX="-1.0" layoutY="510.0" prefHeight="80.0" prefWidth="750.0" styleClass="toppart">
