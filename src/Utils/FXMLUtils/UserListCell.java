@@ -1,11 +1,9 @@
 package Utils.FXMLUtils;
 
-import java.io.File;
 
 import Controllers.Main.MessagerieController;
 import Utils.User.PasswordAuthenticatedUserInterface;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;

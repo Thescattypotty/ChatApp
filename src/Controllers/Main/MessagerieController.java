@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import Utils.AbstractController.AbstractController;
 import Utils.User.PasswordAuthenticatedUserInterface;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
@@ -36,13 +35,7 @@ public class MessagerieController extends AbstractController {
     public void SetReceiver(String username) {
         this.receiver = this.getUser(username);
         if(receiver != null)
-        {
-            this.receiverusername.setText(username);
-        }
-        else
-        {
-            System.out.println("Big problem");
-        }
+        this.receiverusername.setText(username);
     }
 
     @FXML
