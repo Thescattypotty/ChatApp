@@ -6,8 +6,6 @@ import javafx.scene.layout.BorderPane;
 
 public class MainController extends AbstractController
 {
-
-
     @FXML
     private BorderPane MainApp;
 
