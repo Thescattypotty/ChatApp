@@ -41,9 +41,7 @@ public class UserListCell extends ListCell<PasswordAuthenticatedUserInterface> {
             setGraphic(userButton);
 
             userButton.setOnMouseClicked(event -> {
-                System.out.println("Button clicked with username: " + user.getUsername());
                 try {
-  
                     MessagerieController controller = MessagerieController.getInstance();
                     controller.SetReceiver(user.getUsername());
                 } catch (Exception e) {
