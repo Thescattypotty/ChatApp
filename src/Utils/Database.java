@@ -40,7 +40,6 @@ public class Database {
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + " : " + e.getMessage());
         }
-
     }
 
     public void DeleteTables() {
@@ -57,7 +56,6 @@ public class Database {
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + " : " + e.getMessage());
         }
-
     }
 
     public static void close() {
@@ -71,7 +69,7 @@ public class Database {
     }
 
     public static void main(String[] args) {
-
+        
         if (args.length == 0) {
             System.out.println("Please Provide an argument !");
             return;
@@ -95,12 +93,7 @@ public class Database {
             finally
             {
                 Database.close();
-            }
-
-            
-
+            }            
         }
-
     }
-
 }
