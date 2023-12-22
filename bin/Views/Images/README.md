@@ -1,6 +1,0 @@
-
-
-
-Files : *.png
-        *.jpg
-        *.jpeg
