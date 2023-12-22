@@ -16,7 +16,6 @@ public class UserListCell implements
         Callback<ListView<PasswordAuthenticatedUserInterface>, ListCell<PasswordAuthenticatedUserInterface>> {
 
     public UserListCell() {
-        // Ajoutez ici des initialisations ou des gestionnaires d'événements globaux si nécessaire
     }
 
     @Override
@@ -56,7 +55,6 @@ public class UserListCell implements
 
         userButton.setGraphic(contentPane);
 
-        // Gestionnaire d'événements
         userButton.setOnMouseClicked(event -> handleButtonClick(user));
 
         return userButton;

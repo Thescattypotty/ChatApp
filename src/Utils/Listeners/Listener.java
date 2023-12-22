@@ -33,7 +33,7 @@ public class Listener {
         Listener.user = user;
         this.messagerieController = messagerieController;
         try {
-            socket = new Socket("localhost", port);
+            socket = new Socket(hostname, port);
             objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectIntputStream = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {

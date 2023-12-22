@@ -5,10 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import Controllers.Main.MessagerieController;
 import Repository.UserRepository;
-import Utils.Listeners.Listener;
-import Utils.Listeners.UserListener;
 import Utils.Services.UserService;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
