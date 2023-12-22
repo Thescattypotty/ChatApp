@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" styleClass="mainbackground" stylesheets="@../Css/register.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AuthentificationController">
+   <children>
+      <AnchorPane prefHeight="600.0" prefWidth="680.0" styleClass="mainbackground">
+         <children>
+            <ImageView fitHeight="328.0" fitWidth="300.0" layoutX="189.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/agency-dark.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="147.0" layoutY="410.0" text="Fast, Efficient and Productive" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <Text fill="#99a1b7" layoutX="152.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In this kind of post, the blogger introduces a person they’ve interviewed and provides some background information about the interviewee and theirwork following this is a transcript of the interview." textAlignment="CENTER" wrappingWidth="373.36170959472656" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="LoginForm" layoutX="694.0" layoutY="10.0" prefHeight="600.0" prefWidth="340.0" visible="false">
+         <children>
+            <AnchorPane layoutX="10.0" layoutY="20.0" prefHeight="560.0" prefWidth="320.0" style="-fx-background-color: #1E2129;" styleClass="rounded-1">
+               <children>
+                  <Label layoutX="104.0" layoutY="14.0" text="Sign in" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Text fill="#99a1b7" layoutX="62.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Social Campaigns" textAlignment="CENTER" wrappingWidth="195.76173400878906" />
+                  <Button accessibleText="Sign in with Google" layoutX="19.0" layoutY="95.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="281.0" styleClass="loginBtn" text="Sign in with Google" textFill="WHITE" textOverrun="CLIP" />
+                  <Button accessibleText="Sign in with Google" layoutX="19.0" layoutY="128.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="281.0" styleClass="loginBtn" text="Sign in with Apple" textFill="WHITE" textOverrun="CLIP" />
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="62.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/google-icon-2048x2048-czn3g8x8.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="64.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Apple_logo_white.svg.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#99a1b7" layoutX="62.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Or with email" textAlignment="CENTER" wrappingWidth="195.76173400878906" />
+                  <Line endX="-15.79998779296875" layoutX="130.0" layoutY="192.0" startX="-100.0" stroke="#99a1b7" strokeWidth="0.5" />
+                  <Line endX="-15.79998779296875" layoutX="306.0" layoutY="192.0" startX="-100.0" stroke="#99a1b7" strokeWidth="0.5" />
+                  <TextField fx:id="LoginForm_username" layoutX="18.0" layoutY="217.0" prefHeight="26.0" prefWidth="282.0" promptText="Email" styleClass="textfield" />
+                  <Button fx:id="LoginButton" accessibleText="Sign in with Google" layoutX="19.0" layoutY="326.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="26.0" prefWidth="281.0" styleClass="signinbtn" text="Sign in" textFill="WHITE" textOverrun="CLIP" />
+                  <Text fill="#99a1b7" layoutX="37.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Not a member yet?" textAlignment="CENTER" wrappingWidth="144.56178283691406" />
+                  <Text fill="#99a1b7" layoutX="51.0" layoutY="542.0" strokeType="OUTSIDE" strokeWidth="0.0" text="English" wrappingWidth="58.16175842285156" />
+                  <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="30.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/eng.png" />
+                     </image>
+                  </ImageView>
+                  <PasswordField fx:id="LoginForm_password" layoutX="19.0" layoutY="267.0" prefHeight="27.0" prefWidth="282.0" promptText="Password" styleClass="textfield" />
+                  <Button layoutX="135.0" layoutY="294.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="177.0" styleClass="links" text="Forget password?" textFill="#1b84ff" />
+                  <Button fx:id="OpenRegister" layoutX="181.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchToRegister" prefHeight="26.0" prefWidth="85.0" styleClass="links" text="Sign up" textFill="#1b84ff" />
+                  <Button layoutX="153.0" layoutY="524.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="95.0" styleClass="links" text="Contact us" textFill="#1b84ff" />
+                  <Button layoutX="239.0" layoutY="524.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0" styleClass="links" text="Terms" textFill="#1b84ff" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="RegisterForm" layoutX="684.0" prefHeight="600.0" prefWidth="340.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="684.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane layoutX="10.0" layoutY="20.0" prefHeight="560.0" prefWidth="320.0" style="-fx-background-color: #1E2129;" styleClass="rounded-1">
+               <children>
+                  <Label layoutX="114.0" layoutY="14.0" text="Sign up" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Text fill="#99a1b7" layoutX="62.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Social Campaigns" textAlignment="CENTER" wrappingWidth="195.76173400878906" />
+                  <Button accessibleText="Sign in with Google" layoutX="19.0" layoutY="95.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="281.0" styleClass="loginBtn" text="Sign in with Google" textFill="WHITE" textOverrun="CLIP" />
+                  <Button accessibleText="Sign in with Google" layoutX="19.0" layoutY="128.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="281.0" styleClass="loginBtn" text="Sign in with Apple" textFill="WHITE" textOverrun="CLIP" />
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="62.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/google-icon-2048x2048-czn3g8x8.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="64.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Apple_logo_white.svg.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#99a1b7" layoutX="62.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Or with email" textAlignment="CENTER" wrappingWidth="195.76173400878906" />
+                  <Line endX="-15.79998779296875" layoutX="130.0" layoutY="192.0" startX="-100.0" stroke="#99a1b7" strokeWidth="0.5" />
+                  <Line endX="-15.79998779296875" layoutX="306.0" layoutY="192.0" startX="-100.0" stroke="#99a1b7" strokeWidth="0.5" />
+                  <TextField fx:id="register_username" layoutX="18.0" layoutY="217.0" prefHeight="26.0" prefWidth="282.0" promptText="Email" styleClass="textfield" />
+                  <Button fx:id="RegisterButton" accessibleText="Sign in with Google" layoutX="19.0" layoutY="415.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="26.0" prefWidth="281.0" styleClass="signinbtn" text="Sign up" textFill="WHITE" textOverrun="CLIP" />
+                  <Text fill="#99a1b7" layoutX="58.0" layoutY="467.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account" textAlignment="CENTER" wrappingWidth="144.56178283691406" />
+                  <Text fill="#99a1b7" layoutX="51.0" layoutY="542.0" strokeType="OUTSIDE" strokeWidth="0.0" text="English" wrappingWidth="58.16175842285156" />
+                  <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="30.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/eng.png" />
+                     </image>
+                  </ImageView>
+                  <PasswordField fx:id="register_comfirmPassword" layoutX="18.0" layoutY="336.0" prefHeight="27.0" prefWidth="282.0" promptText="Repeat Password" styleClass="textfield" />
+                  <Button fx:id="OpenLogin" layoutX="174.0" layoutY="450.0" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="26.0" prefWidth="85.0" styleClass="links" text="Sign in" textFill="#1b84ff" />
+                  <Button layoutX="181.0" layoutY="524.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" styleClass="links" text="Contact us" textFill="#1b84ff" />
+                  <Button layoutX="233.0" layoutY="524.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" styleClass="links" text="Terms" textFill="#1b84ff" />
+                  <PasswordField fx:id="register_password" layoutX="18.0" layoutY="263.0" prefHeight="27.0" prefWidth="282.0" promptText="Password" styleClass="textfield" />
+                  <Text fill="#99a1b7" layoutX="18.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Use 8 or more characters with a mix of letters, numbers &amp; symbols." wrappingWidth="282.4000000000001" />
+                  <CheckBox fx:id="Register_CheckBox" layoutX="25.0" layoutY="377.0" mnemonicParsing="false" text="Accept the " />
+                  <Button layoutX="118.0" layoutY="374.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" styleClass="links" text="Terms" textFill="#1b84ff" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

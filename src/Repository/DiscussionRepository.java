@@ -8,62 +8,77 @@ import java.util.List;
 
 import Models.Discussion;
 
-public class DiscussionRepository extends EntityRepository
-{
-    UserRepository userRepository;
-    public DiscussionRepository()
-    {
+public class DiscussionRepository extends EntityRepository {
+    private UserRepository userRepository;
+
+    public DiscussionRepository() {
         super();
         userRepository = new UserRepository();
     }
-    public void addDiscussion(Discussion discussion)
-    {
-        String query = "INSERT INTO DISCUSSION(ID_user1 , ID_user2 , ) VALUES(? , ?, CURRENT_TIMESTEAMP, CURRENT_TIMESTEAMP)";
-        try(PreparedStatement preparedStatement = connection.prepareStatement(query))
-        {
+
+    public void addDiscussion(Discussion discussion) {
+        String query = "INSERT INTO DISCUSSION(ID_user1 , ID_user2 , CreatedAt , UpdatedAt) VALUES(? , ?, CURRENT_TIMESTEAMP, CURRENT_TIMESTEAMP)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, discussion.getUser1Id());
             preparedStatement.setInt(2, discussion.getUser2Id());
-            preparedStatement.executeUpdate();   
-        }
-        catch(SQLException e)
-        {
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public List<Discussion> GetDiscussions(String username)
-    {
+
+    public List<Discussion> GetDiscussions(String username) {
         List<Discussion> discussionofuser = new ArrayList<>();
         String query = "SELECT * FROM DISCUSSION WHERE ID_user1 = (SELECT ID_user FROM USER WHERE username = ?)";
 
-        try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
-                preparedStatement.setString(1,username);
-                ResultSet rs = preparedStatement.executeQuery();
-                if(rs.next())
-                {
-                    Discussion d = new Discussion(rs.getInt("ID"),rs.getInt("ID_user1"), rs.getInt("ID_user2"), rs.getString("CreatedAt"), rs.getString("UpdatedAt"));
-                    discussionofuser.add(d);
-                }
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                Discussion d = new Discussion(rs.getInt("ID"), rs.getInt("ID_user1"), rs.getInt("ID_user2"),
+                        rs.getString("CreatedAt"), rs.getString("UpdatedAt"));
+                discussionofuser.add(d);
+            }
         } catch (SQLException e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
         return discussionofuser;
     }
-    public Discussion GetDiscussion(String u1 , String u2)
-    {
+
+    public Discussion GetDiscussion(String u1, String u2) {
         Discussion d = null;
 
         String query = "SELECT * FROM DISCUSSION WHERE ID_user1 = (SELECT ID_user FROM USER WHERE username = ?) AND ID_user2 = (SELECT ID_user FROM USER WHERE username = ?)";
 
-        try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
-                preparedStatement.setString(1,u1);
-                preparedStatement.setString(2,u2);
-                ResultSet rs = preparedStatement.executeQuery();
-                if(rs.next())
-                {
-                    d = new Discussion(rs.getInt("ID"),rs.getInt("ID_user1"), rs.getInt("ID_user2"), rs.getString("CreatedAt"), rs.getString("UpdatedAt"));
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, u1);
+            preparedStatement.setString(2, u2);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                d = new Discussion(rs.getInt("ID"), rs.getInt("ID_user1"), rs.getInt("ID_user2"),
+                        rs.getString("CreatedAt"), rs.getString("UpdatedAt"));
+            } else {
+                
+                String query1 = "SELECT * FROM DISCUSSION WHERE ID_user1 = (SELECT ID_user FROM USER WHERE username = ?) AND ID_user2 = (SELECT ID_user FROM USER WHERE username = ?)";
+
+                try (PreparedStatement preparedStatement1 = connection.prepareStatement(query1)) {
+                    preparedStatement1.setString(1, u2);
+                    preparedStatement1.setString(2, u1);
+                    ResultSet rs1 = preparedStatement1.executeQuery();
+                    if (rs.next()) {
+                        d = new Discussion(rs1.getInt("ID"), rs1.getInt("ID_user1"), rs1.getInt("ID_user2"),
+                                rs1.getString("CreatedAt"), rs1.getString("UpdatedAt"));
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
+            }
         } catch (SQLException e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
         return d;
     }
@@ -77,20 +92,19 @@ public class DiscussionRepository extends EntityRepository
             e.printStackTrace();
         }
     }
-    
+
     @Override
     public void DeleteTable() throws SQLException {
         String DeleteTableSQL = "DROP TABLE IF EXISTS DISCUSSION ;";
-        try(PreparedStatement statement = connection.prepareStatement(DeleteTableSQL))
-        {
+        try (PreparedStatement statement = connection.prepareStatement(DeleteTableSQL)) {
             statement.execute();
-        }
-        catch(SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
-        }        
+        }
     }
 
+    public UserRepository getUserRepository() {
+        return userRepository;
+    }
 
-    
 }

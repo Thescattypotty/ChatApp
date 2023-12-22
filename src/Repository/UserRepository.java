@@ -44,13 +44,31 @@ public class UserRepository extends EntityRepository
 
         return user;
     }
+    public PasswordAuthenticatedUserInterface getUser(int id) throws SQLException {
+        String selectSQL = "SELECT * FROM USER WHERE  ID_user = ?";
+        PasswordAuthenticatedUserInterface user = null;
+
+        try (PreparedStatement statement = connection.prepareStatement(selectSQL)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                user = new User(resultSet.getInt("ID_user"), resultSet.getString("username"),
+                        resultSet.getString("password"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return user;
+    }
     public void UpdateUser(PasswordAuthenticatedUserInterface user, String username) throws SQLException
     {
-        String query = "UPDATE USER SET username = ?, password = ? WHERE username";
+        String query = "UPDATE USER SET username = ?, password = ? WHERE username = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 preparedStatement.setString(1, user.getUsername());
                 preparedStatement.setString(2, user.getPassword());
-                preparedStatement.setString(1, username);
+                preparedStatement.setString(3, username);
                 preparedStatement.executeUpdate();
             }
             catch(SQLException e)

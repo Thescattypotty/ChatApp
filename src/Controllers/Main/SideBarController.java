@@ -30,13 +30,11 @@ public class SideBarController extends AbstractController
             List<PasswordAuthenticatedUserInterface> userList = this.userRepository.getAllUsers();
             users.addAll(userList);
             UserListView.setItems(users);
-            UserListView.setCellFactory(param -> new UserListCell());
+            UserListView.setCellFactory(new UserListCell());
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-
     
 }

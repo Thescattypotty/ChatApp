@@ -6,4 +6,5 @@ public interface PasswordAuthenticatedUserInterface extends UserInterface
     void setPlainPassword(String plainPassword);
     String encryptPassword();
     boolean matches(String hashedPassword);
+    int getId();
 }

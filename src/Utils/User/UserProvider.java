@@ -3,7 +3,12 @@ package Utils.User;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import Controllers.Main.MessagerieController;
 import Repository.UserRepository;
+import Utils.Listeners.Listener;
+import Utils.Listeners.UserListener;
 import Utils.Services.UserService;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
@@ -14,8 +19,15 @@ public class UserProvider {
 
     public UserProvider() {
         this.userRepository = new UserRepository();
-        this.authenticatedUsers = new HashMap<>();
+        this.authenticatedUsers = new ConcurrentHashMap<>();
         this.userService = UserService.getInstance();
+    }
+
+    public static UserProvider instance = new UserProvider();
+
+    public static UserProvider getInstance()
+    {
+        return instance;
     }
 
     protected Boolean authenticate(String username, String plainPassword) 
@@ -43,7 +55,7 @@ public class UserProvider {
 
     }
 
-    protected Map<String, PasswordAuthenticatedUserInterface> getAuthenticatedUsers() {
+    public Map<String, PasswordAuthenticatedUserInterface> getAuthenticatedUsers() {
         return new HashMap<>(authenticatedUsers);
   
     }

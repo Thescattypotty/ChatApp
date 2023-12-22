@@ -24,5 +24,6 @@ public class UserService {
 
     public void setUser(PasswordAuthenticatedUserInterface user) {
         this.currentUser = user;
+
     }
 }

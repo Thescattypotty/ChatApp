@@ -14,6 +14,11 @@ public class Discussion {
         this.createdAt = createdAt;
         this.lastUpdated = lastUpdated;
     }
+    public Discussion(int user1Id, int user2Id)
+    {
+        this.user1Id = user1Id;
+        this.user2Id = user2Id;
+    }
 
     public int getDiscussionId() {
         return discussionId;

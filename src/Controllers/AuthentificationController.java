@@ -1,23 +1,26 @@
 package Controllers;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import Models.User;
-import Utils.AlertMessage;
 import Utils.AbstractController.AbstractController;
 import Utils.User.PasswordAuthenticatedUserInterface;
 
 public class AuthentificationController extends AbstractController {
-
-    private AlertMessage alert;
 
     @FXML
     private ResourceBundle resources;
@@ -61,9 +64,17 @@ public class AuthentificationController extends AbstractController {
     @FXML
     private TextField register_username;
 
+    private static AuthentificationController instance;
+
+    public static MainController mainController;
+
     public AuthentificationController() {
         super();
-        alert = new AlertMessage();
+        instance = this;
+    }
+
+    public static AuthentificationController getInstance() {
+        return instance;
     }
 
     @FXML
@@ -71,11 +82,33 @@ public class AuthentificationController extends AbstractController {
         String username = LoginForm_username.getText();
         String password = LoginForm_password.getText();
 
-
         if (this.authenticate(username, password) == true) {
             alert.successMessage("Login Successfully");
             clearLogin();
-            this.redirectTo((Stage)LoginButton.getScene().getWindow(), "/home/senshi/Desktop/ChatApp/src/Views/mainappinterface.fxml");
+
+            Window window = LoginButton.getScene().getWindow();
+            if (window instanceof Stage) {
+                Stage currentStage = (Stage) window;
+                try {
+                    FXMLLoader loader = new FXMLLoader(
+                            new File("/home/senshi/Desktop/ChatApp/src/Views/mainappinterface.fxml").toURI().toURL());
+                    Parent root = loader.load();
+                    Stage newStage = new Stage();
+                    newStage.setTitle("ChatApp - Welcome");
+                    newStage.setScene(new Scene(root, 1024, 600));
+
+                    if (currentStage != null) {
+                        currentStage.close();
+                    }
+                    newStage.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("Unable to retrieve the Stage.");
+            }
+            
+
         } else {
             alert.errorMessage("Login Failed. Check your username or password");
             clearLogin();
@@ -108,15 +141,13 @@ public class AuthentificationController extends AbstractController {
     }
 
     @FXML
-    public void switchToLogin()
-    {
+    public void switchToLogin() {
         RegisterForm.setVisible(false);
         LoginForm.setVisible(true);
     }
 
-    @FXML 
-    public void switchToRegister()
-    {
+    @FXML
+    public void switchToRegister() {
         RegisterForm.setVisible(true);
         LoginForm.setVisible(false);
     }

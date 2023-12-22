@@ -1,9 +1,11 @@
 package Models;
 
+import java.io.Serializable;
+
 import Utils.User.PasswordAuthenticatedUserInterface;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
-public class User implements PasswordAuthenticatedUserInterface
+public class User implements PasswordAuthenticatedUserInterface ,Serializable
 {
     private int id;
     private String username;
@@ -14,6 +16,12 @@ public class User implements PasswordAuthenticatedUserInterface
 
     public User()
     {
+        
+    }
+    @Override
+    public String toString()
+    {
+        return username;
         
     }
     //for new instance
@@ -29,6 +37,7 @@ public class User implements PasswordAuthenticatedUserInterface
         this.username = username;
     }
 
+    @Override
     public int getId() {
         return id;
     }

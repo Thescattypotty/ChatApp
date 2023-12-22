@@ -14,13 +14,15 @@ public class ProfileRepository extends EntityRepository
     }
     public void addProfile(Profile profile) throws SQLException
     {
-        String query = "INSERT INTO PROFILE (ID_Profile, ID_user, firstname, lastname, age) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO PROFILE (ID_Profile, ID_user, firstname, lastname, age, profile_image) VALUES (?, ?, ?, ?, ?)";
+
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 preparedStatement.setInt(1, profile.getId());
                 preparedStatement.setInt(2, profile.getUserId());
                 preparedStatement.setString(3, profile.getFirstname());
                 preparedStatement.setString(4, profile.getLastname());
                 preparedStatement.setInt(5, profile.getAge());
+                preparedStatement.setBytes(6, profile.getProfileImage());
                 preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,7 +40,7 @@ public class ProfileRepository extends EntityRepository
             ResultSet rs = statement.executeQuery();
             if(rs.next())
             {
-                profile = new Profile(rs.getInt("ID_PROFILE"), rs.getInt("ID_user"), rs.getString("firstname"), rs.getString("lastname"), rs.getInt("age"));
+                profile = new Profile(rs.getInt("ID_PROFILE"), rs.getInt("ID_user"), rs.getString("firstname"), rs.getString("lastname"), rs.getInt("age"), rs.getBytes("profile_image"));
                 return profile;
             }
         } catch (SQLException e) {
@@ -49,7 +51,7 @@ public class ProfileRepository extends EntityRepository
     public void UpdateProfile(Profile profile, String username) throws SQLException
     {
         String query = "UPDATE PROFILE " +
-        "SET firstname = ?, lastname = ?, age = ? " +
+        "SET firstname = ?, lastname = ?, age = ? " +"profile_image = ?" + 
         "WHERE ID_user = (SELECT ID_user FROM USER WHERE username = ?)";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -58,6 +60,7 @@ public class ProfileRepository extends EntityRepository
                 preparedStatement.setString(3, profile.getLastname());
                 preparedStatement.setInt(4, profile.getAge());
                 preparedStatement.setString(5, username);
+                preparedStatement.setBytes(6, profile.getProfileImage());
                 preparedStatement.executeUpdate();
             }
             catch(SQLException e)
@@ -82,7 +85,7 @@ public class ProfileRepository extends EntityRepository
     @Override
     public void createTable() throws SQLException {
 
-        String createTableSQL = "CREATE TABLE PROFILE(ID_Profile INT PRIMARY KEY, ID_user INT NOT NULL, firstname VARCHAR(30) NOT NULL , lastname VARCHAR(30) NOT NULL , age int NOT NULL , FOREIGN KEY(ID_user) REFERENCES USER(ID_user)); INSERT INTO PROFILE(firstname ,lastname ,age, ID_user) VALUES('yahya','bennis',21,0)";
+        String createTableSQL = "CREATE TABLE PROFILE(ID_Profile INT PRIMARY KEY, ID_user INT NOT NULL, firstname VARCHAR(30) NOT NULL, profile_image BLOB , lastname VARCHAR(30) NOT NULL , age int NOT NULL , FOREIGN KEY(ID_user) REFERENCES USER(ID_user)); INSERT INTO PROFILE(firstname ,lastname ,age, ID_user) VALUES('yahya','bennis',21,0)";
         try (PreparedStatement statement = connection.prepareStatement(createTableSQL)) {
             statement.execute();
         } catch (SQLException e) {
