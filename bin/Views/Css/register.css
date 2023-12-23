@@ -1,0 +1,61 @@
+.mainbackground{
+    -fx-background-image:url('../Images/bg10-dark.jpeg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+.rounded-1 {
+    -fx-border-radius: 2.0; /* Set the border radius to 1 */
+    -fx-background-radius: 10.0; /* Set the background radius to 1 */
+}
+.loginBtn{
+    -fx-background-color: transparent;
+    -fx-text-fill: #fff;
+    -fx-border-color: #99a1b7;
+    -fx-border-radius:2.0;
+}
+.anchor{
+    -fx-background-color: transparent;
+}
+.signinbtn{
+    -fx-background-color: #1b84ff;
+    -fx-text-fill: #fff;
+}
+.loginBtn:hover{
+    -fx-background-color: #404450;
+    -fx-text-fill: #1b84ff;
+}
+.signinbtn:hover{
+    -fx-background-color: #54a2fb;
+    -fx-text-fill: #ffffff;
+}
+.textfield{
+    -fx-background-color: transparent;
+    -fx-text-fill: #fff;
+    -fx-border-color: #99a1b7;
+    -fx-border-radius:2.0;
+}
+.links{
+    fx-text-fill: #1b84ff;
+    -fx-background-color: transparent;
+}
+.check-box{
+    -fx-text-fill:#99a1b7;
+    -fx-background-color:transparent;
+}
+.check-box:focused {
+    -fx-faint-focus-color: transparent;
+    -fx-focus-color: transparent;
+}
+.check-box:selected .box > .mark {
+    -fx-background-color: #ffffff; /* Check mark color */
+}
+.check-box .box {
+    -fx-background-color: transparent; /* Default background color */
+    -fx-border-color: #99a1b7; /* Default border color */
+    -fx-border-radius:2.0;
+}
+.check-box:selected .box {
+    -fx-background-color: #54a2fb;
+    -fx-border-color: #ffffff;
+}
+

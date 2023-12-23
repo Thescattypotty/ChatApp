@@ -177,10 +177,10 @@ public class MessagerieController extends AbstractController {
     }
 
     public void receiveMessage(Message message) {
-        if(message.getReceiver().equals(this.getUser()))
+
+        if(message.getReceiver().getUsername().equals(this.getUser().getUsername()))
             LeftMessage(message.getContent());
-        else if(message.getSender().equals(this.getUser()))
-            LeftMessage(message.getContent());
+            
         logger.info("Message received" + message.toString());
     }
 

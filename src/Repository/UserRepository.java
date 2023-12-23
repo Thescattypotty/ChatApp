@@ -146,5 +146,29 @@ public class UserRepository extends EntityRepository
 
         return userList;
     }
+    public List<PasswordAuthenticatedUserInterface> getAllExcept(String username) throws SQLException
+    {
+        List<PasswordAuthenticatedUserInterface> userList = new ArrayList<>();
+        String query = "SELECT * FROM USER WHERE username <> ?";
+        try(PreparedStatement statement = connection.prepareStatement(query))
+        {
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next())
+            {
+                PasswordAuthenticatedUserInterface user = new User(
+                        resultSet.getInt("ID_user"),
+                        resultSet.getString("username"),
+                        resultSet.getString("password")
+                );
+                userList.add(user);
+            }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return userList;
+        
+    }
 }
 

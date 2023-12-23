@@ -2,14 +2,16 @@ package Utils.FXMLUtils;
 
 import Controllers.Main.MessagerieController;
 import Utils.User.PasswordAuthenticatedUserInterface;
-
+import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.util.Callback;
 
 public class UserListCell implements
@@ -38,24 +40,32 @@ public class UserListCell implements
 
     private Button createUserButton(PasswordAuthenticatedUserInterface user) {
         Button userButton = new Button();
+        userButton.setStyle("-fx-background-color: #333333;");
 
-        Circle circle = new Circle(18, Color.WHITE);
-        Label username = new Label(user.getUsername());
-        Label time = new Label("0 time ago");
+        HBox hbox = new HBox();
+        hbox.setAlignment(Pos.CENTER);
+        hbox.setPadding(new Insets(5,5,5,5));
+        
+        Text text = new Text(user.getUsername());
+        TextFlow textflow = new TextFlow(text);
 
-        AnchorPane contentPane = new AnchorPane();
-        contentPane.getChildren().addAll(circle, username, time);
+        textflow.setPadding(new Insets(5, 5, 5, 10));
 
-        AnchorPane.setLeftAnchor(circle, 25.0);
-        AnchorPane.setTopAnchor(circle, 20.0);
-        AnchorPane.setLeftAnchor(username, 50.0);
-        AnchorPane.setTopAnchor(username, 11.0);
-        AnchorPane.setLeftAnchor(time, 162.0);
-        AnchorPane.setTopAnchor(time, 13.0);
+        text.setFill(Color.WHITE);
 
-        userButton.setGraphic(contentPane);
-
+        hbox.getChildren().add(textflow);
+        
+        Platform.runLater(
+            new Runnable() {
+                @Override
+                public void run()
+                {
+                    userButton.setGraphic(hbox);
+                }
+            }
+        );
         userButton.setOnMouseClicked(event -> handleButtonClick(user));
+
 
         return userButton;
     }

@@ -27,9 +27,11 @@ public class SideBarController extends AbstractController
     public void initialize(URL location, ResourceBundle resources) {
         
         try {
+            //List<PasswordAuthenticatedUserInterface> userList = this.userRepository.getAllExcept(this.getUser().getUsername());
             List<PasswordAuthenticatedUserInterface> userList = this.userRepository.getAllUsers();
             users.addAll(userList);
             UserListView.setItems(users);
+            UserListView.setStyle("-fx-control-inner-background: black;");
             UserListView.setCellFactory(new UserListCell());
 
         } catch (SQLException e) {
