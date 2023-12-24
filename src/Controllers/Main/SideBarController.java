@@ -14,20 +14,18 @@ import javafx.scene.control.ListView;
 
 import Utils.FXMLUtils.UserListCell;
 
-public class SideBarController extends AbstractController
-{
+public class SideBarController extends AbstractController {
 
+    public SideBarController(){}
     @FXML
     private ListView<PasswordAuthenticatedUserInterface> UserListView;
 
     private ObservableList<PasswordAuthenticatedUserInterface> users = FXCollections.observableArrayList();
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+
         try {
-            //List<PasswordAuthenticatedUserInterface> userList = this.userRepository.getAllExcept(this.getUser().getUsername());
             List<PasswordAuthenticatedUserInterface> userList = this.userRepository.getAllUsers();
             users.addAll(userList);
             UserListView.setItems(users);
@@ -38,5 +36,12 @@ public class SideBarController extends AbstractController
             e.printStackTrace();
         }
     }
-    
+
+    public void AddUserToList(PasswordAuthenticatedUserInterface newUser)
+    {
+        users.add(newUser);
+        UserListView.setItems(users);
+        UserListView.setCellFactory(new UserListCell());
+    }
+
 }

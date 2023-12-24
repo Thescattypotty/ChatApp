@@ -2,10 +2,12 @@ package Models;
 
 import java.io.Serializable;
 
+import Repository.MessageRepository;
 import Utils.User.PasswordAuthenticatedUserInterface;
 
 public class Message implements Serializable
 {
+
     private int messageId;
     private int discussionId;
     private int senderId;
@@ -15,16 +17,20 @@ public class Message implements Serializable
     
     private String name;
 
-
     private String content;
+    
     private Messagetype type;
     PasswordAuthenticatedUserInterface sender;
     PasswordAuthenticatedUserInterface receiver;
+    MessageRepository messageRepository;
+
     public Message(PasswordAuthenticatedUserInterface sender , PasswordAuthenticatedUserInterface receiver , String content)
     {
         this.content = content;
         this.sender = sender;
         this.receiver = receiver;
+        //messageRepository = new MessageRepository();
+        //messageRepository.
     }
     @Override
     public String toString()
@@ -113,47 +119,7 @@ public class Message implements Serializable
 
     public void setType(Messagetype type) {
         this.type = type;
-    }/*
-
-    public ArrayList<PasswordAuthenticatedUserInterface> getUserList() {
-        return list;
     }
-
-    public void setUserList(HashMap<String ,PasswordAuthenticatedUserInterface> list) {
-        this.list = new ArrayList<>(list.values());
-    }
-
-    public ArrayList<PasswordAuthenticatedUserInterface> getUsers() {
-        return Users;
-    }
-
-    public void setUsers(ArrayList<PasswordAuthenticatedUserInterface> users) {
-        Users = users;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }*/
-/*
-    public byte[] getPicture() {
-        return picture;
-    }
-
-    public void setPicture(byte[] picture) {
-        this.picture = picture;
-    }
-
-    public byte[] getVoiceMsg() {
-        return voiceMsg;
-    }
-
-    public void setVoiceMsg(byte[] voiceMsg) {
-        this.voiceMsg = voiceMsg;
-    }*/
 
     public int getReceiverId() {
         return receiverId;

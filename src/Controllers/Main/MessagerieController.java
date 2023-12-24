@@ -25,6 +25,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.AnchorPane;
 
 import javafx.scene.layout.HBox;
@@ -56,6 +57,9 @@ public class MessagerieController extends AbstractController {
     @FXML
     private AnchorPane messagerieAnchorPane;
 
+    @FXML
+    private AnchorPane DefaultApp;
+
     Logger logger = LoggerFactory.getLogger(MessagerieController.class);
 
     public MessagerieController() {
@@ -83,57 +87,54 @@ public class MessagerieController extends AbstractController {
 
             Message message = new Message(this.getUser(), this.receiver, msg);
             this.listener.send(message);
+            //if(message.getReceiver().getUsername().equals(this.receiver.getUsername() )&& message.getSender().getUsername().equals(this.getUser().getUsername()))
             RightMessage(msg);
             logger.info("Message sended" + message.toString());
             messageContent.clear();
         }
     }
 
-    public void RightMessage(String message)
-    {
+    public void RightMessage(String message) {
         HBox hbox = new HBox();
         hbox.setAlignment(Pos.CENTER_RIGHT);
         hbox.setPadding(new Insets(5, 5, 5, 10));
         Text text = new Text(message);
         TextFlow textflow = new TextFlow(text);
-        textflow.setStyle("-fx-color: rgb(239, 242, 255);"+
-            "-fx-background-color: rgb(15, 125 , 242);"+
-            "-fx-background-radius: 20px"
-        );
+        textflow.setStyle("-fx-color: rgb(239, 242, 255);" +
+                "-fx-background-color: rgb(15, 125 , 242);" +
+                "-fx-background-radius: 20px");
         textflow.setPadding(new Insets(5, 5, 5, 10));
         text.setFill(Color.color(0.934, 0.945, 0.996));
         hbox.getChildren().add(textflow);
-        
+
         Platform.runLater(new Runnable() {
             @Override
-            public void run()
-            {
-            chatPane.getItems().add(hbox);
+            public void run() {
+                chatPane.getItems().add(hbox);
             }
         });
     }
-    public void LeftMessage(String message)
-    {
+
+    public void LeftMessage(String message) {
         HBox hbox = new HBox();
         hbox.setAlignment(Pos.CENTER_LEFT);
         hbox.setPadding(new Insets(5, 5, 5, 10));
         Text text = new Text(message);
         TextFlow textflow = new TextFlow(text);
-        textflow.setStyle("-fx-background-color: rgb(233, 233 , 235);"+
-            "-fx-background-radius: 20px"
-        );
+        textflow.setStyle("-fx-color: rgb(0,0,0);" +
+                "-fx-background-color: rgb(233, 233 , 235);" +
+                "-fx-background-radius: 20px");
         textflow.setPadding(new Insets(5, 10, 5, 10));
         text.setFill(Color.color(0.934, 0.945, 0.996));
         hbox.getChildren().add(textflow);
-        
+
         Platform.runLater(new Runnable() {
             @Override
-            public void run()
-            {
-            chatPane.getItems().add(hbox);
+            public void run() {
+                chatPane.getItems().add(hbox);
             }
         });
-        
+
     }
 
     public void SetReceiver(String username) {
@@ -150,6 +151,10 @@ public class MessagerieController extends AbstractController {
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        
+        DefaultApp.setVisible(true);
+
+        messagerieAnchorPane.setVisible(false);
 
         listener = new Listener(this.getUser(), this);
 
@@ -174,14 +179,36 @@ public class MessagerieController extends AbstractController {
                 ke.consume();
             }
         });
+
+    }
+
+    @FXML
+    void OnButtonSend(TouchEvent event) {
+        if(event.getEventType() == TouchEvent.TOUCH_PRESSED)
+        {
+            try {
+                sendButtonAction();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void receiveMessage(Message message) {
 
-        if(message.getReceiver().getUsername().equals(this.getUser().getUsername()))
+        if (message.getReceiver().getUsername().equals(this.getUser().getUsername()))
             LeftMessage(message.getContent());
-            
+
         logger.info("Message received" + message.toString());
+    }
+
+    public void SwitchScene()
+    {
+        if(DefaultApp.isVisible())
+        {
+            DefaultApp.setVisible(false);
+            messagerieAnchorPane.setVisible(true);
+        }
     }
 
 }

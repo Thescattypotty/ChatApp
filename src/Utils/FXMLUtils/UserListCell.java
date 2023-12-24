@@ -53,13 +53,12 @@ public class UserListCell implements
 
         text.setFill(Color.WHITE);
 
-        hbox.getChildren().add(textflow);
-        
         Platform.runLater(
             new Runnable() {
                 @Override
                 public void run()
                 {
+                    hbox.getChildren().add(textflow);
                     userButton.setGraphic(hbox);
                 }
             }
@@ -75,6 +74,7 @@ public class UserListCell implements
             MessagerieController controller = MessagerieController.getInstance();
             controller.SetReceiver(user.getUsername());
             System.out.println("User Clicked : " + user.getUsername());
+            controller.SwitchScene();
         } catch (Exception e) {
             e.printStackTrace();
         }

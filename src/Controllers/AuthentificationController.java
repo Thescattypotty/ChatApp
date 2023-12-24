@@ -4,7 +4,6 @@ import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -95,8 +94,11 @@ public class AuthentificationController extends AbstractController {
                     Parent root = loader.load();
                     Stage newStage = new Stage();
                     newStage.setTitle("ChatApp - Welcome");
-                    newStage.setScene(new Scene(root, 1024, 600));
-
+                    newStage.setWidth(currentStage.getWidth());
+                    newStage.setHeight(currentStage.getHeight());
+                    newStage.setScene(new Scene(root));
+                    newStage.setResizable(false);
+                    
                     if (currentStage != null) {
                         currentStage.close();
                     }

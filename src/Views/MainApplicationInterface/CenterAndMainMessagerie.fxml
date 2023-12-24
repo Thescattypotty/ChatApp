@@ -11,7 +11,6 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane stylesheets="@../Css/mainappinterface.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Main.MessagerieController">
    <children>
       <AnchorPane fx:id="messagerieAnchorPane" layoutX="1.0" prefHeight="590.0" prefWidth="750.0" style="-fx-background-color: #1E2129;" styleClass="rounded" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -63,7 +62,7 @@
               <AnchorPane layoutX="-1.0" layoutY="510.0" prefHeight="80.0" prefWidth="750.0" styleClass="toppart">
                   <children>
                       <TextField fx:id="messageContent" layoutX="125.0" layoutY="19.0" prefHeight="44.0" prefWidth="562.0" promptText="Type a Message ..." styleClass="textfield" />
-                      <ImageView fitHeight="24.0" fitWidth="23.0" layoutX="705.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" styleClass="Label">
+                      <ImageView fitHeight="24.0" fitWidth="23.0" layoutX="705.0" layoutY="30.0" onTouchPressed="#OnButtonSend" pickOnBounds="true" preserveRatio="true" styleClass="Label">
                           <image>
                               <Image url="@../Images/envoyer-le-message.png" />
                           </image>
@@ -87,6 +86,6 @@
               </AnchorPane>
           </children>
       </AnchorPane>
-      <AnchorPane prefHeight="590.0" prefWidth="750.0" style="-fx-background-color: #1E2129;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="DefaultApp" prefHeight="590.0" prefWidth="750.0" style="-fx-background-color: #1E2129;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>
