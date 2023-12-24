@@ -5,6 +5,9 @@
 **/*.class
 
 
+bin/*
+
+
 # Exclude .db file 
 
 **/*.db
