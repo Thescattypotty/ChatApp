@@ -1,12 +1,6 @@
 # Exclude all .so files
 **/*.so
 
-# Exclude .class files
-**/*.class
-
-
-bin/*
-
 
 # Exclude .db file 
 
